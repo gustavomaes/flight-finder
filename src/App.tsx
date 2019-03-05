@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components'
+import theme from './theme';
+import Main from './screens/Main';
+import Header from './components/Header';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Test</h1>
-      </div>
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <Header />
+          <Main />
+        </React.Fragment>
+      </ThemeProvider>
     );
   }
 }

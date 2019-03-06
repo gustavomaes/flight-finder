@@ -1,10 +1,31 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { ThemeProvider } from 'styled-components'
 import Input from '../components/common/Input';
 import InputList from '../components/common/InputList';
 import InputDate from '../components/common/InputDate';
 import Button from '../components/common/Button';
+import AccordionItem from '../components/AccordionItem';
+
+const paragraph = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet natus sint provident vel ab reprehenderit cum soluta, suscipit facere nisi sed earum repellendus fuga debitis, nam molestiae minima voluptates possimus.'
+
+const data = [
+  {
+    title: 'Pricing plans',
+    paragraph
+  },
+  {
+    title: 'How to apply',
+    paragraph
+  },
+  {
+    title: 'Purchasing process',
+    paragraph
+  },
+  {
+    title: 'Usage guides',
+    paragraph
+  }
+]
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,13 +75,27 @@ const WrapperHalfLine = styled.div`
 `;
 
 const WrapperFlights = styled.div`
+  padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   align-self: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: 60%;
 `;
+
+const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: ${(p: any) => p.theme.colors.secondaryBackground};
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: ${(p: any) => p.theme.colors.shadow};
+`
+
 
 interface State {
   flyingFrom: string
@@ -142,12 +177,15 @@ class Finder extends React.Component {
           </Card>
         </Section>
         <WrapperFlights>
-          <p>AAAA</p>
-          <p>AAAA</p>
-          <p>AAAA</p>
-          <p>AAAA</p>
-          <p>AAAA</p>
-          <p>AAAA</p>
+          <List>
+            {data.map((data, key) => {
+              return (
+                <li key={key}>
+                  <AccordionItem {...data} />
+                </li>
+              )
+            })}
+          </List>
         </WrapperFlights>
       </Wrapper>
     );
